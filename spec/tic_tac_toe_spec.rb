@@ -48,6 +48,22 @@ describe Tic_Tac_Toe do
     end
   end
 
+  describe "Draw Game" do
+    it "when all the fields are taken the game is over and a Draw is delclared" do
+      game = Tic_Tac_Toe.new
+      game.claim_field(0, 0, 1)
+      game.claim_field(0, 1, -1)
+      game.claim_field(0, 2, 1)
+      game.claim_field(1, 0, -1)
+      game.claim_field(1, 1, 1)
+      game.claim_field(1, 2, -1)
+      game.claim_field(2, 0, -1)
+      game.claim_field(2, 1, 1)
+      game.claim_field(2, 2, -1)
+      expect(game.claim_field(2, 2, 1)).to eq("The Game is a draw")
+    end
+  end
+
   describe '#rules for X' do
     it "X wins when there are three horozontail Xs in the first row" do
       game = Tic_Tac_Toe.new
