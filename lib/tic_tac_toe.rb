@@ -1,9 +1,13 @@
+require 'rules'
 class Tic_Tac_Toe
+
   attr_reader :grid
-  def initialize
+
+  def initialize(rules = Rules.new)
     @grid = [[0, 0, 0],
             [0, 0, 0],
             [0, 0, 0]]
+    @rules = Rules.new
   end
 
   def claim_field(x_axis, y_axis, players_token)
@@ -11,38 +15,13 @@ class Tic_Tac_Toe
   end
 
   def rules
-  return "X wins with a sick horozontal!" if all_possible_horozontail_wins_X?
-  return "X wins with a devastating vertical!" if all_possibel_vertical_wins_X?
-  end
-
-
-
-  private
-
-  def all_possible_horozontail_wins_X?
-    horozontail_win_X?(0) || horozontail_win_X?(1) || horozontail_win_X?(2)
-  end
-
-  def all_possibel_vertical_wins_X?
-    vertical_win_X?(0) || vertical_win_X?(1) || vertical_win_X?(2)
-  end
-
-  def vertical_win_X?(column)
-    return true if sum_column(column) == 3
-    false
-  end
-
-  def horozontail_win_X?(row)
-    return true if sum_row(row) == 3
-    false
-  end
-
-  def sum_row(row)
-    @grid[row].inject(0){|sum,x| sum + x }
-  end
-
-  def sum_column(column)
-    @grid[0][column] + @grid[1][column] + @grid[2][column]
+    @rules.update_grid(@grid)
+    return "X wins with a hip horozontal!" if @rules.all_possible_horozontail_wins_X?
+    return "X wins with a virtuous vertical!" if @rules.all_possibel_vertical_wins_X?
+    return "X wins with a devastating diagonal!" if @rules.diagonal_win_X?
+    return "O wins with a hip horozontal!" if @rules.all_possible_horozontail_wins_O?
+    return "O wins with a virtuous vertical!" if @rules.all_possibel_vertical_wins_O?
+    return "O wins with a devastating diagonal!" if @rules.diagonal_win_O?
   end
 
 end
