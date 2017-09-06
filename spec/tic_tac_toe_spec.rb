@@ -28,6 +28,26 @@ describe Tic_Tac_Toe do
     end
   end
 
+  describe "#gruard statments" do
+    it "can't place a X or an O on a taken field" do
+      game = Tic_Tac_Toe.new
+      game.claim_field(2, 2, 1)
+      expect(game.claim_field(2, 2, -1)).to eq("Sorry that field is taken!")
+      expect(game.grid).to eq([[0, 0, 0],
+                              [0, 0, 0],
+                              [0, 0, 1]])
+    end
+
+    it "can't place a X or an O on a taken field" do
+      game = Tic_Tac_Toe.new
+      game.claim_field(2, 2, -1)
+      expect(game.claim_field(2, 2, 1)).to eq("Sorry that field is taken!")
+      expect(game.grid).to eq([[0, 0, 0],
+                              [0, 0, 0],
+                              [0, 0, -1]])
+    end
+  end
+
   describe '#rules for X' do
     it "X wins when there are three horozontail Xs in the first row" do
       game = Tic_Tac_Toe.new

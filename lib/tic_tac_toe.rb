@@ -11,6 +11,7 @@ class Tic_Tac_Toe
   end
 
   def claim_field(x_axis, y_axis, players_token)
+  return "Sorry that field is taken!" if @grid[x_axis][y_axis] == 1 || @grid[x_axis][y_axis] == -1
      @grid[x_axis][y_axis] = players_token
   end
 
